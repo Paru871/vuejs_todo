@@ -2,9 +2,9 @@ const app = {
   data () {
     return {
       tasks: [],
-      newTask: '',
-      editedTask: '',
-      editIndex: ''
+      newTask: null,
+      renewedTask: null,
+      editKey: null
     }
   },
   mounted () {
@@ -25,18 +25,19 @@ const app = {
       }
     },
     editTask (task, key) {
-      this.editIndex = key
-      this.editedTask = task
+      console.log(key)
+      this.editKey = key
+      this.renewedTask = task
     },
     removeTask (key) {
       this.tasks.splice(key, 1)
       this.saveTasks()
     },
     updateTask (key) {
-      this.tasks[key] = this.editedTask
+      this.tasks[key] = this.renewedTask
       this.saveTasks()
-      this.editedTask = ''
-      this.editIndex = ''
+      this.renewedTask = ''
+      this.editKey = ''
     },
     saveTasks () {
       const parsed = JSON.stringify(this.tasks)
